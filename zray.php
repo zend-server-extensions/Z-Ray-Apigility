@@ -1,4 +1,8 @@
 <?php
+/*********************************
+	Apigility Z-Ray Extension
+	Version: 1.00
+**********************************/
 namespace Apigility;
 
 use Zend\Mvc\MvcEvent;
