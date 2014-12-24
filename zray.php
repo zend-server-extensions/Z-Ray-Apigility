@@ -16,7 +16,9 @@ class Apigility {
 		$mvcEvent = $context["functionArgs"][1];
 		if (class_exists('ZF\MvcAuth\MvcAuthEvent') && is_a($mvcEvent, 'ZF\MvcAuth\MvcAuthEvent') && $mvcEvent->getIdentity()) {
 			//event: authentication, authentication.post authorization authorization.post in Apigility
-			if (! $this->isApigilityRoleSaved) {
+			if (! $this->isApigilityRoleSaved &&
+			      method_exists($mvcEvent, 'getIdentity') && 
+			      method_exists($mvcEvent->getIdentity(), 'getRoleId')) {
 			    $storage['identity_role'][] = array('roleId' => $mvcEvent->getIdentity()->getRoleId());
 			    $this->isApigilityRoleSaved = true;
 			}
